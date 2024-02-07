@@ -13,7 +13,6 @@ const timerSeconds = document.querySelector('[data-seconds]');
 let countdownInterval;
 let userSelectedDate;
 
-// Вибір дати
 flatpickr(datetimePicker, {
   enableTime: true,
   time_24hr: true,
@@ -23,7 +22,6 @@ flatpickr(datetimePicker, {
     userSelectedDate = selectedDates[0];
 
     if (userSelectedDate < new Date()) {
-      // Дата в минулому
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future',
@@ -31,18 +29,15 @@ flatpickr(datetimePicker, {
 
       startButton.disabled = true;
     } else {
-      // Валідна дата в майбутньому
       startButton.disabled = false;
     }
   },
 });
 
-// Форматування часу
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
-// Підрахунок значень
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -57,7 +52,6 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// Зворотній відлік
 function startCountdown() {
   countdownInterval = setInterval(() => {
     const now = new Date().getTime();
@@ -78,7 +72,6 @@ function startCountdown() {
   }, 1000);
 }
 
-// Оновлення інтерфейсу таймера
 function displayTime({ days, hours, minutes, seconds }) {
   timerDays.textContent = addLeadingZero(days);
   timerHours.textContent = addLeadingZero(hours);
@@ -86,7 +79,6 @@ function displayTime({ days, hours, minutes, seconds }) {
   timerSeconds.textContent = addLeadingZero(seconds);
 }
 
-// Обробник натискання кнопки "Start"
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
   datetimePicker.disabled = true;

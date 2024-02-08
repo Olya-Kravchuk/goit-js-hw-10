@@ -13,6 +13,8 @@ const timerSeconds = document.querySelector('[data-seconds]');
 let countdownInterval;
 let userSelectedDate;
 
+startButton.disabled = true;
+
 flatpickr(datetimePicker, {
   enableTime: true,
   time_24hr: true,
@@ -65,6 +67,7 @@ function startCountdown() {
         message: 'The countdown has reached zero.',
       });
       startButton.disabled = true;
+      datetimePicker.disabled = false;
     } else {
       const timeRemaining = convertMs(timeDifference);
       displayTime(timeRemaining);

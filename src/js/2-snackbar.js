@@ -33,6 +33,9 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       });
       this.elements.delay.value = "";
       this.elements.state.value = "";
-      document.querySelector('input[name="state"]:checked').checked = false;
+      const selectedRadioButton = document.querySelector('input[name="state"]:checked');
+      if (selectedRadioButton) {
+      selectedRadioButton.checked = false;
+      }
     });
 });

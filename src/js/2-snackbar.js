@@ -22,20 +22,12 @@ document.querySelector(".form").addEventListener("submit", function (event) {
         title: "Fulfilled promise",
         message: `✅ Fulfilled promise in ${delay}ms`,
       });
-      this.elements.delay.value = "";
-      this.elements.state.value = "";
-      document.querySelector('input[name="state"]:checked').checked = false;
     })
     .catch((delay) => {
       iziToast.error({
         title: "Rejected promise",
         message: `❌ Rejected promise in ${delay}ms`,
       });
-      this.elements.delay.value = "";
-      this.elements.state.value = "";
-      const selectedRadioButton = document.querySelector('input[name="state"]:checked');
-      if (selectedRadioButton) {
-      selectedRadioButton.checked = false;
-      }
     });
+  event.target.reset();
 });
